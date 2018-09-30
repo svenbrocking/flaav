@@ -15,7 +15,6 @@ def msg_create(content):
 
 def msg_get() -> object:
     contents = svc.get_msg()
-    print(contents)
     return contents
 
 

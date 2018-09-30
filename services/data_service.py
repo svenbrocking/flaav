@@ -15,6 +15,5 @@ def get_msg():
     num_msgs = Msg.objects.count()
     n = random.randint(1, num_msgs + 1)
     msg = Msg.objects[n]
-    print(msg.content)
 
     return msg.content
