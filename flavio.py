@@ -29,8 +29,10 @@ def flv(bot, update):
     if "fla" in txt:
         bot.send_message(chat_id=update.message.chat_id, text="Hey kwiebus!")
 
+
 def msg_create():
     svc.create_msg(content)
+
 
 mongo_setup.global_init()
 
