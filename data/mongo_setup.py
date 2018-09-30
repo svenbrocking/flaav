@@ -17,4 +17,4 @@ data = dict(
 
 
 def global_init():
-    mongoengine.register_connection(alias='core', db='flaav')
+    mongoengine.register_connection(alias='core', db='flaav', **data)

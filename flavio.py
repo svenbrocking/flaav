@@ -7,6 +7,7 @@ import random
 import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import data.mongo_setup as mongo_setup
+import services.data_service as svc
 
 # open file for reading
 with open("msg_flavio.txt", "r") as msg_file:
@@ -27,6 +28,9 @@ def flv(bot, update):
     txt = update.message.text.lower()
     if "fla" in txt:
         bot.send_message(chat_id=update.message.chat_id, text="Hey kwiebus!")
+
+def msg_create():
+    svc.create_msg(content)
 
 mongo_setup.global_init()
 
