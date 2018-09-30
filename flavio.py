@@ -3,24 +3,28 @@
 
 from data.config import TOKEN
 
-import random
 import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import data.mongo_setup as mongo_setup
 import services.data_service as svc
 
-# open file for reading
-with open("msg_flavio.txt", "r") as msg_file:
-    content = msg_file.readlines()
-    # remove whitespace characters like `\n` at the end of each line
-    content = [x.strip() for x in content]
+
+def msg_create(content):
+     for c in content:
+        svc.create_msg(c)
+
+def msg_get() -> object:
+    contents = svc.get_msg()
+    print(contents)
+    return contents
 
 
 def kwartje(bot, update):
     """Send a random message when the command /kwartje is issued."""
     chat_id = update.message.chat_id
+    content = msg_get()
     bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.TYPING)
-    bot.send_message(chat_id=chat_id, text=random.choice(content))
+    bot.send_message(chat_id=chat_id, text=content)
 
 
 def flv(bot, update):
@@ -28,10 +32,6 @@ def flv(bot, update):
     txt = update.message.text.lower()
     if "fla" in txt:
         bot.send_message(chat_id=update.message.chat_id, text="Hey kwiebus!")
-
-
-def msg_create():
-    svc.create_msg(content)
 
 
 mongo_setup.global_init()
