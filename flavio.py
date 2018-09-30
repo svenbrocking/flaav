@@ -1,6 +1,6 @@
 # flavio.py
 
-import settings
+from config import TOKEN
 import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import random
