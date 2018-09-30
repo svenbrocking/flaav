@@ -1,9 +1,11 @@
+#! python3
 # flavio.py
 
 from config import TOKEN
+import random
 import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-import random
+import data.mongo_setup as mongo_setup
 
 # open file for reading
 with open("msg_flavio.txt", "r") as msg_file:
@@ -14,17 +16,18 @@ with open("msg_flavio.txt", "r") as msg_file:
 
 def kwartje(bot, update):
     """Send a random message when the command /kwartje is issued."""
-    chatid = update.message.chat_id
-    bot.send_chat_action(chat_id=chatid, action=telegram.ChatAction.TYPING)
-    bot.send_message(chat_id=chatid, text=random.choice(content))
+    chat_id = update.message.chat_id
+    bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.TYPING)
+    bot.send_message(chat_id=chat_id, text=random.choice(content))
 
 
 def flv(bot, update):
-    """Send a welcom message when the the bots name is issued."""
+    """Send a welcome message when the the bots name is issued."""
     txt = update.message.text.lower()
     if "fla" in txt:
         bot.send_message(chat_id=update.message.chat_id, text="Hey kwiebus!")
 
+mongo_setup.global_init()
 
 # create updater with api key
 updater = Updater(TOKEN)
