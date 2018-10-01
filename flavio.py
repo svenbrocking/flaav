@@ -2,7 +2,6 @@
 # flavio.py
 
 from data.config import TOKEN
-
 import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import data.mongo_setup as mongo_setup
@@ -10,8 +9,9 @@ import services.data_service as svc
 
 
 def msg_create(content):
-     for c in content:
+    for c in content:
         svc.create_msg(c)
+
 
 def msg_get() -> object:
     contents = svc.get_msg()
@@ -31,7 +31,6 @@ def flv(bot, update):
     txt = update.message.text.lower()
     if "fla" in txt:
         bot.send_message(chat_id=update.message.chat_id, text="Hey kwiebus!")
-
 
 mongo_setup.global_init()
 
