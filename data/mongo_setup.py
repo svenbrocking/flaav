@@ -1,6 +1,6 @@
 import mongoengine
-from data.config import *
-
+from data.config import USERNAME, PASSWORD
+# Define the database settings
 alias_core = 'core'
 db = 'flaav'
 
@@ -15,6 +15,6 @@ data = dict(
     # ssl_cert_reqs = ssl.CERT_NONE
 )
 
-
+# Database initialisation
 def global_init():
     mongoengine.register_connection(alias='core', db='flaav', **data)

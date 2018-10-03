@@ -9,11 +9,13 @@ import services.data_service as svc
 
 
 def msg_create(content):
+    """"Create new message in the database"""    
     for c in content:
         svc.create_msg(c)
 
 
-def msg_get() -> object:
+def msg_get():
+    """Get messages from the database"""
     contents = svc.get_msg()
     return contents
 
@@ -32,6 +34,7 @@ def flv(bot, update):
     if "fla" in txt:
         bot.send_message(chat_id=update.message.chat_id, text="Hey kwiebus!")
 
+# initialize the mongo connection
 mongo_setup.global_init()
 
 # create updater with api key
