@@ -1,14 +1,14 @@
 #! python3
 # flavio.py
 
-from data.config import TOKEN
+from data.config import TOKEN, SENTRYURL
 import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import data.mongo_setup as mongo_setup
 import services.data_service as svc
 import logging
 import sentry_sdk
-sentry_sdk.init("https://f42895cf31bc4903a5f1f2308bf888bc@sentry.io/1293451")
+sentry_sdk.init(SENTRYURL)
 
 logging.basicConfig(level=logging.ERROR,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
