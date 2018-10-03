@@ -6,7 +6,12 @@ import telegram
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import data.mongo_setup as mongo_setup
 import services.data_service as svc
+import logging
+import sentry_sdk
+sentry_sdk.init("https://f42895cf31bc4903a5f1f2308bf888bc@sentry.io/1293451")
 
+logging.basicConfig(level=logging.ERROR,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 def msg_create(content):
     """"Create new message in the database"""    
@@ -49,4 +54,4 @@ dp.add_handler(MessageHandler(Filters.text, flv))
 
 # start polling
 updater.start_polling()
-updater.idle()
+#updater.idle()
