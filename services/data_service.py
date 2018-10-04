@@ -15,14 +15,6 @@ def get_msg():
     verified_msgs = Msg.objects(verified=True)
     num_msgs = len(verified_msgs)
     n = random.randint(0, num_msgs -1)
-    print(n)
     msg = verified_msgs[n].content
  
-    print(msg)
     return msg
-    #num_msgs = Msg.objects.count()
-    # num_msgs = Msg.objects.count()
-    # n = random.randint(0, num_msgs)
-    # msg = Msg.objects[n]
-
-    return msg.content
